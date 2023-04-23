@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import TabContext from '../context/TabContext'
 import IgnoreType from "./IgnoreType"
@@ -20,7 +20,6 @@ const Group = ({
 }) => {
 
     const { tabValue } = useContext(TabContext)
-
     useEffect(() => {
         console.log(tabValue)
     }, [tabValue])
@@ -96,23 +95,21 @@ const Group = ({
                                     />
                                 )
                             case "Ignore":
-                                if (elem.conditons?.value == tabValue) {
-                                    console.log(elem.label)
-                                    return (
-                                        <IgnoreType
-                                            key={elem.label}
-                                            label={elem.label}
-                                            description={elem.description}
-                                            required={elem.validate.required == true ? "required" : ""}
-                                            immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                            name={elem.jsonKey}
-                                            icon={elem.icon}
-                                            level={elem.level}
-                                            placeholder={elem.placeholder}
-                                            subParameters={elem.subParameters}
-                                        />
-                                    )
-                                }
+                                return (
+                                    <IgnoreType
+                                        key={elem.label}
+                                        label={elem.label}
+                                        description={elem.description}
+                                        required={elem.validate.required == true ? "required" : ""}
+                                        immutable={elem.validate.immutable == true ? "readOnly" : ""}
+                                        name={elem.jsonKey}
+                                        icon={elem.icon}
+                                        level={elem.level}
+                                        conditions={elem.conditions}
+                                        placeholder={elem.placeholder}
+                                        subParameters={elem.subParameters}
+                                    />
+                                )
                         }
                     })
                 }

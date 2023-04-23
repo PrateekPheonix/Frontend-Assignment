@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 
 import Desc from "./Desc"
+import OutputContext from "../context/OutputContext"
+import { useEffect } from "react"
 
 const Select = ({
     label,
@@ -16,6 +18,14 @@ const Select = ({
 }) => {
 
     const [isHovering, setIsHovering] = useState(false)
+    const [input, setInput] = useState(defaultValue)
+    const { outputData, setOutputData } = useContext(OutputContext)
+
+    const handleChange = (e) => {
+        e.target.value != undefined && setInput(e.target.value)
+        outputData[name] = input
+    }
+
 
     return (
         <div className="w-[90%] py-4 m-auto">
@@ -34,6 +44,7 @@ const Select = ({
                     required={required}
                     readOnly={immutable}
                     defaultValue={defaultValue}
+                    onChange={handleChange}
                     className="border-solid border-2 border-blue-200 bg-[#dff0ff] w-[50%] px-3 py-2 text-sm rounded-md"
                 >
                     {

@@ -6,6 +6,7 @@ import Select from "./Select"
 import Group from "./Group"
 import Wrapper from "./Wrapper"
 import DataContext from "../context/DataContext"
+import OutputContext from "../context/OutputContext"
 import Toggle from "./Toggle"
 import Switch from "./Switch"
 
@@ -15,10 +16,12 @@ const Preview = () => {
 
     const { formData } = useContext(DataContext)
     formData?.sort((a, b) => a.sort - b.sort);
+    const { outputData, setOutputData, showModal, setShowModal } = useContext(OutputContext)
 
     const formSubmit = (e) => {
         e.preventDefault()
-        console.log("Submit")
+        console.log(outputData)
+        setShowModal(true)
     }
 
     return (

@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react"
 
 import Desc from "./Desc"
 import TabContext from '../context/TabContext'
+import OutputContext from "../context/OutputContext"
 
 
 const Radio = ({
@@ -20,6 +21,14 @@ const Radio = ({
     const [isHovering, setIsHovering] = useState(false)
 
     const { tabValue, setTabValue } = useContext(TabContext)
+
+    const [input, setInput] = useState(defaultValue)
+    const { outputData, setOutputData } = useContext(OutputContext)
+
+    const handleChange = (e) => {
+        setInput(e.target.checked)
+        outputData[name] = input
+    }
 
     useEffect(() => {
         if (!tabValue) {
@@ -49,6 +58,7 @@ const Radio = ({
                                     type="radio"
                                     id={elem.value}
                                     name={name}
+                                    onChange={handleChange}
                                     value={elem.value}
                                     defaultChecked={elem.value === defaultValue}
                                     readOnly={immutable}

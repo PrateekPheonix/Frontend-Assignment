@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import Desc from './Desc'
+import OutputContext from "../context/OutputContext"
 
 const Switch = ({
     label,
@@ -15,6 +16,14 @@ const Switch = ({
 }) => {
 
     const [isHovering, setIsHovering] = useState(false)
+    const [input, setInput] = useState(defaultValue)
+    const { outputData, setOutputData } = useContext(OutputContext)
+
+    const handleChange = (e) => {
+        setInput(e.target.checked)
+        outputData[name] = input
+    }
+
 
     return (
         <div className="w-[90%] py-4 m-auto">
@@ -24,6 +33,7 @@ const Switch = ({
                     name={name}
                     placeholder={placeholder}
                     required={required}
+                    onChange={handleChange}
                     readOnly={immutable}
                     className="w-4 h-4 rounded mr-3 bg-black text-black focus:ring-0"
                 />

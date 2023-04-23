@@ -4,11 +4,12 @@ const OutputContext = createContext()
 
 export function OutputProvider({ children }) {
 
-    const [outputData, setOutputData] = useState()
+    const [outputData, setOutputData] = useState({})
+    const [showModal, setShowModal] = useState(false);
 
 
     return (
-        <OutputContext.Provider value={{ outputData, setOutputData }}>
+        <OutputContext.Provider value={{ outputData, setOutputData, showModal, setShowModal }}>
             {children}
         </OutputContext.Provider>
     )

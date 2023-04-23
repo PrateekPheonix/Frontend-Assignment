@@ -15,85 +15,92 @@ const IgnoreType = ({
     icon,
     level,
     placeholder,
-    subParameters
+    subParameters,
+    conditions
 }) => {
 
     const { tabValue } = useContext(TabContext)
+    console.log(conditions[0].value)
+    console.log(tabValue)
 
     return (
         <div className="w-[90%] py-4 m-auto">
-            <div className="font-bold border-b-2 pb-4 mb-4">
-                {label}
-            </div>
-            <div className="flex flex-col items-center justify-center">
-                {
-                    subParameters.map((elem) => {
-                        switch (elem.uiType) {
-                            case "Input":
-                                return (
-                                    <Input
-                                        key={elem.label}
-                                        label={elem.label}
-                                        description={elem.description}
-                                        required={elem.validate.required == true ? "required" : ""}
-                                        immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                        name={elem.jsonKey}
-                                        icon={elem.icon}
-                                        level={elem.level}
-                                        placeholder={elem.placeholder}
-                                    />
-                                )
-                            case "Select":
-                                return (
-                                    <Select
-                                        key={elem.label}
-                                        label={elem.label}
-                                        description={elem.description}
-                                        required={elem.validate.required == true ? "required" : ""}
-                                        immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                        options={elem.validate.options}
-                                        defaultValue={elem.validate.defaultValue}
-                                        name={elem.jsonKey}
-                                        icon={elem.icon}
-                                        level={elem.level}
-                                        placeholder={elem.placeholder}
-                                    />
-                                )
-                            case "Radio":
-                                return (
-                                    <Radio
-                                        key={elem.label}
-                                        label={elem.label}
-                                        description={elem.description}
-                                        required={elem.validate.required == true ? "required" : ""}
-                                        immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                        options={elem.validate.options}
-                                        defaultValue={elem.validate.defaultValue}
-                                        name={elem.jsonKey}
-                                        icon={elem.icon}
-                                        level={elem.level}
-                                        placeholder={elem.placeholder}
-                                    />
-                                )
-                            case "Switch":
-                                return (
-                                    <Switch
-                                        key={elem.label}
-                                        label={elem.label}
-                                        description={elem.description}
-                                        required={elem.validate.required == true ? "required" : ""}
-                                        immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                        name={elem.jsonKey}
-                                        icon={elem.icon}
-                                        level={elem.level}
-                                        placeholder={elem.placeholder}
-                                        defaultValue={elem.validate.defaultValue}
-                                    />
-                                )
+            {tabValue && conditions[0].value == tabValue ?
+                <>
+                    <div className="font-bold border-b-2 pb-4 mb-4">
+                        {label}
+                    </div>
+                    <div className="flex flex-col items-center justify-center">
+                        {
+                            subParameters.map((elem) => {
+                                switch (elem.uiType) {
+                                    case "Input":
+                                        return (
+                                            <Input
+                                                key={elem.label}
+                                                label={elem.label}
+                                                description={elem.description}
+                                                required={elem.validate.required == true ? "required" : ""}
+                                                immutable={elem.validate.immutable == true ? "readOnly" : ""}
+                                                name={elem.jsonKey}
+                                                icon={elem.icon}
+                                                level={elem.level}
+                                                placeholder={elem.placeholder}
+                                            />
+                                        )
+                                    case "Select":
+                                        return (
+                                            <Select
+                                                key={elem.label}
+                                                label={elem.label}
+                                                description={elem.description}
+                                                required={elem.validate.required == true ? "required" : ""}
+                                                immutable={elem.validate.immutable == true ? "readOnly" : ""}
+                                                options={elem.validate.options}
+                                                defaultValue={elem.validate.defaultValue}
+                                                name={elem.jsonKey}
+                                                icon={elem.icon}
+                                                level={elem.level}
+                                                placeholder={elem.placeholder}
+                                            />
+                                        )
+                                    case "Radio":
+                                        return (
+                                            <Radio
+                                                key={elem.label}
+                                                label={elem.label}
+                                                description={elem.description}
+                                                required={elem.validate.required == true ? "required" : ""}
+                                                immutable={elem.validate.immutable == true ? "readOnly" : ""}
+                                                options={elem.validate.options}
+                                                defaultValue={elem.validate.defaultValue}
+                                                name={elem.jsonKey}
+                                                icon={elem.icon}
+                                                level={elem.level}
+                                                placeholder={elem.placeholder}
+                                            />
+                                        )
+                                    case "Switch":
+                                        return (
+                                            <Switch
+                                                key={elem.label}
+                                                label={elem.label}
+                                                description={elem.description}
+                                                required={elem.validate.required == true ? "required" : ""}
+                                                immutable={elem.validate.immutable == true ? "readOnly" : ""}
+                                                name={elem.jsonKey}
+                                                icon={elem.icon}
+                                                level={elem.level}
+                                                placeholder={elem.placeholder}
+                                                defaultValue={elem.validate.defaultValue}
+                                            />
+                                        )
+                                }
+                            })
                         }
-                    })
-                }
-            </div>
+                    </div></> : <></>
+            }
+
         </div>
     )
 }
