@@ -15,13 +15,12 @@ const IgnoreType = ({
     icon,
     level,
     placeholder,
+    parent,
     subParameters,
     conditions
 }) => {
 
     const { tabValue } = useContext(TabContext)
-    console.log(conditions[0].value)
-    console.log(tabValue)
 
     return (
         <div className="w-[90%] py-4 m-auto">
@@ -35,6 +34,7 @@ const IgnoreType = ({
                             subParameters.map((elem) => {
                                 switch (elem.uiType) {
                                     case "Input":
+
                                         return (
                                             <Input
                                                 key={elem.label}
@@ -42,7 +42,7 @@ const IgnoreType = ({
                                                 description={elem.description}
                                                 required={elem.validate.required == true ? "required" : ""}
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                                name={name + "_" + elem.jsonKey}
+                                                name={parent + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
@@ -58,7 +58,7 @@ const IgnoreType = ({
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
                                                 options={elem.validate.options}
                                                 defaultValue={elem.validate.defaultValue}
-                                                name={name + "_" + elem.jsonKey}
+                                                name={parent + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
@@ -74,7 +74,7 @@ const IgnoreType = ({
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
                                                 options={elem.validate.options}
                                                 defaultValue={elem.validate.defaultValue}
-                                                name={name + "_" + elem.jsonKey}
+                                                name={parent + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
@@ -88,7 +88,7 @@ const IgnoreType = ({
                                                 description={elem.description}
                                                 required={elem.validate.required == true ? "required" : ""}
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                                name={name + "_" + elem.jsonKey}
+                                                name={parent + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}

@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 
 import Input from "./Input"
 import Radio from "./Radio"
@@ -7,33 +7,33 @@ import Group from "./Group"
 import Wrapper from "./Wrapper"
 import DataContext from "../context/DataContext"
 import OutputContext from "../context/OutputContext"
-import Toggle from "./Toggle"
+
 import Switch from "./Switch"
 
 
 
 const Preview = () => {
 
+    const frm = useRef()
     const { formData } = useContext(DataContext)
     formData?.sort((a, b) => a.sort - b.sort);
-    const { outputData, setOutputData, showModal, setShowModal } = useContext(OutputContext)
+    const { setShowModal } = useContext(OutputContext)
 
     const formSubmit = (e) => {
         e.preventDefault()
-        console.log(outputData)
+        frm.current?.reset();
         setShowModal(true)
     }
 
     return (
         <div className="min-h-screen h-max flex flex-col items-center justify-center mt-14 mb-10">
-            <form className="w-full" onSubmit={formSubmit}>
+            <form ref={frm} className="w-full" onSubmit={formSubmit}>
                 {formData?.map((elem) => {
                     switch (elem.uiType) {
                         case "Input":
                             return (
-                                <Wrapper>
+                                <Wrapper key={elem.label}>
                                     <Input
-                                        key={elem.label}
                                         label={elem.label}
                                         description={elem.description}
                                         required={elem.validate.required == true ? "required" : ""}
@@ -47,9 +47,8 @@ const Preview = () => {
                             )
                         case "Select":
                             return (
-                                <Wrapper>
+                                <Wrapper key={elem.label}>
                                     <Select
-                                        key={elem.label}
                                         label={elem.label}
                                         description={elem.description}
                                         required={elem.validate.required == true ? "required" : ""}
@@ -65,9 +64,8 @@ const Preview = () => {
                             )
                         case "Radio":
                             return (
-                                <Wrapper>
+                                <Wrapper key={elem.label}>
                                     <Radio
-                                        key={elem.label}
                                         label={elem.label}
                                         description={elem.description}
                                         required={elem.validate.required == true ? "required" : ""}
@@ -83,9 +81,8 @@ const Preview = () => {
                             )
                         case "Group":
                             return (
-                                <Wrapper>
+                                <Wrapper key={elem.label}>
                                     <Group
-                                        key={elem.label}
                                         label={elem.label}
                                         description={elem.description}
                                         required={elem.validate.required == true ? "required" : ""}
@@ -100,9 +97,8 @@ const Preview = () => {
                             )
                         case "Switch":
                             return (
-                                <Wrapper>
+                                <Wrapper key={elem.label}>
                                     <Switch
-                                        key={elem.label}
                                         label={elem.label}
                                         description={elem.description}
                                         required={elem.validate.required == true ? "required" : ""}

@@ -103,6 +103,7 @@ const Group = ({
                                         required={elem.validate.required == true ? "required" : ""}
                                         immutable={elem.validate.immutable == true ? "readOnly" : ""}
                                         name={elem.jsonKey}
+                                        parent={name}
                                         icon={elem.icon}
                                         level={elem.level}
                                         conditions={elem.conditions}

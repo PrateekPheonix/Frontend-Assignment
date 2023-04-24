@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 
 import Desc from "./Desc"
 import OutputContext from "../context/OutputContext"
@@ -17,12 +17,16 @@ const Input = ({
 
     const [isHovering, setIsHovering] = useState(false)
     const [input, setInput] = useState()
-    const { outputData, setOutputData } = useContext(OutputContext)
+    const { outputData, showModal } = useContext(OutputContext)
 
     const handleChange = (e) => {
         setInput(e.target.value)
-        outputData[name] = input
     }
+    useEffect(() => {
+
+        outputData[name] = input
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [input])
 
 
     return (

@@ -1,9 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import OutputContext from "../context/OutputContext"
 
 export default function Modal() {
 
     const { outputData, showModal, setShowModal } = useContext(OutputContext)
+
+    const closeModal = () => {
+        setShowModal(false)
+    }
+
     return (
         <>
             {showModal ? (
@@ -25,7 +30,7 @@ export default function Modal() {
                                     <button
                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={closeModal}
                                     >
                                         Close
                                     </button>
