@@ -18,9 +18,9 @@ export default function Modal() {
                                         Form Output
                                     </h3>
                                 </div>
-                                <div className="px-5 py-2">
-                                    {JSON.stringify(outputData)}
-                                </div>
+                                <pre className="px-5 py-">
+                                    {JSON.stringify(outputData, undefined, 4)}
+                                </pre>
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                                     <button
                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

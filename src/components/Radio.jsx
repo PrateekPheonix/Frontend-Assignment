@@ -26,16 +26,16 @@ const Radio = ({
     const { outputData, setOutputData } = useContext(OutputContext)
 
     const handleChange = (e) => {
-        setInput(e.target.checked)
-        outputData[name] = input
+        setInput(e.target.value)
     }
 
     useEffect(() => {
         if (!tabValue) {
             setTabValue(defaultValue)
         }
+        outputData[name] = input
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [input])
 
 
     return (

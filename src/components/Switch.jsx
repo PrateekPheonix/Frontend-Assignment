@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import Desc from './Desc'
 import OutputContext from "../context/OutputContext"
@@ -21,8 +21,12 @@ const Switch = ({
 
     const handleChange = (e) => {
         setInput(e.target.checked)
-        outputData[name] = input
     }
+
+    useEffect(() => {
+        outputData[name] = input
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [input])
 
 
     return (

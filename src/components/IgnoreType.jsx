@@ -42,7 +42,7 @@ const IgnoreType = ({
                                                 description={elem.description}
                                                 required={elem.validate.required == true ? "required" : ""}
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                                name={elem.jsonKey}
+                                                name={name + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
@@ -58,7 +58,7 @@ const IgnoreType = ({
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
                                                 options={elem.validate.options}
                                                 defaultValue={elem.validate.defaultValue}
-                                                name={elem.jsonKey}
+                                                name={name + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
@@ -74,7 +74,7 @@ const IgnoreType = ({
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
                                                 options={elem.validate.options}
                                                 defaultValue={elem.validate.defaultValue}
-                                                name={elem.jsonKey}
+                                                name={name + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
@@ -88,7 +88,7 @@ const IgnoreType = ({
                                                 description={elem.description}
                                                 required={elem.validate.required == true ? "required" : ""}
                                                 immutable={elem.validate.immutable == true ? "readOnly" : ""}
-                                                name={elem.jsonKey}
+                                                name={name + "_" + elem.jsonKey}
                                                 icon={elem.icon}
                                                 level={elem.level}
                                                 placeholder={elem.placeholder}
